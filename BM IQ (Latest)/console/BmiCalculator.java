@@ -1,3 +1,5 @@
+package console;
+
 
 import java.util.Scanner;
 import java.util.Locale;                             
@@ -6,31 +8,29 @@ public class BmiCalculator{
         
         sc.useLocale(Locale.US);          
 		System.out.print("\033[H\033[2J");
-		System.out.flush();		
+		System.out.flush();
 
-        char repeat=0;
+
+        int repeat=0;
 
         do{
             int unitChoice = getUnitChoice(sc);
 			System.out.print("\033[H\033[2J");
 			System.out.flush();	
-            double weight=(unitChoice == 1)? getValidInput(sc, "Enter your weight in kilogram: ", 10, 600)
-                        : getValidInput(sc, "Enter your weight in pounds", 22, 1300);
-            double height = (unitChoice == 1) ? getValidInput(sc, "Enter your height in meters: ", 0.5, 2.5)  
-                        :getValidInput(sc, "Enter your height in inches", 20, 100);
+            double weight=(unitChoice == 1)? MyMethods.getValidInput(sc, "Enter your weight in kilogram: ", 10, 600)
+                        : MyMethods.getValidInput(sc, "Enter your weight in pounds", 22, 1300);
+            double height = (unitChoice == 1) ? MyMethods.getValidInput(sc, "Enter your height in meters: ", 0.5, 2.5)
+                        :MyMethods.getValidInput(sc, "Enter your height in inches", 20, 100);
             double bmi = calculateBMI(unitChoice, weight, height);
             System.out.println("Your BMI is "+ bmi);
             System.out.println(getCategory(bmi));
-            repeat = askToRepeat(sc);                
-            System.out.println();
+            repeat = MyMethods.askToRepeat(sc);
+            if (repeat == 2) break;
 
-        }while (repeat == 'y'|| repeat == 'Y');
+        }while (repeat == 1);
     }
 
-    public static char askToRepeat(Scanner sc){      
-        System.out.println("Calculate again? (y/n): ");
-        return sc.next().charAt(0);
-    }
+
 
     public static int getUnitChoice(Scanner sc){
         int choice;
@@ -56,25 +56,8 @@ public class BmiCalculator{
         return choice;
     }
 
-    public static double getValidInput(Scanner sc, String prompt, double min, double max){
-        double value;
-        while(true){
-            System.out.println(prompt);
 
-            if (sc.hasNextDouble()){
-                value = sc.nextDouble();
-                if (value >= min && value <= max){
-                    break;
-                }else{
-                    System.out.printf("Please enter a value between %.1f and %.1f.\n", min, max);  
-                }
-            }else {
-                System.out.println("Invalid input. Please enter a value");
-                sc.next();
-            }
-        }
-        return value;                                
-    }
+
 
     public static double calculateBMI(int unitChoice, double weight, double height){
         double totalBMI;

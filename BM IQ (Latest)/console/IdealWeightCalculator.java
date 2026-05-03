@@ -1,10 +1,15 @@
+package console;
+
 import java.util.Scanner;
 
 public class IdealWeightCalculator {
     public static void run(Scanner sc, String username){
         String gender;
         double height;
-        char repeat;
+        int repeat;
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
 
         System.out.println("======= Ideal Weight Calculator =======");
 
@@ -13,8 +18,8 @@ public class IdealWeightCalculator {
             System.out.print("\033[H\033[2J");
             System.out.flush();
 
-            height = (unitChoice == 1) ? BmiCalculator.getValidInput(sc, "Enter your height in meters: ", 0.5, 2.5)
-                    : BmiCalculator.getValidInput(sc, "Enter your height in inches: ", 20, 100);
+            height = (unitChoice == 1) ? MyMethods.getValidInput(sc, "Enter your height in meters: ", 0.5, 2.5)
+                    : MyMethods.getValidInput(sc, "Enter your height in inches: ", 20, 100);
 
             System.out.println("Enter your gender (M/F): ");
             gender = sc.next().toUpperCase();
@@ -32,17 +37,18 @@ public class IdealWeightCalculator {
 
 
 
-            repeat = BmiCalculator.askToRepeat(sc);
-            System.out.println();
+            repeat = MyMethods.askToRepeat(sc);
+            if (repeat == 2) break;
 
-        }while(repeat == 'y' || repeat == 'Y');
+
+        }while(repeat == 1);
     }
 
     public static double calculateIdealWeight(int unitChoice, double height, String gender){//divine formula
         double idealWeight;
 
         if(unitChoice == 1){
-            double heightInInches = height * 100 / 2.54;//conversion to feet/inches idk the americans
+            double heightInInches = height * 100 / 2.54;//conversion to inches
             if(gender.equals("M")){
                 idealWeight = 50 + 2.3 * ((heightInInches) - 60);
             } else {
