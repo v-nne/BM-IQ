@@ -10,7 +10,7 @@
   ╚═════╝ ╚═╝     ╚═╝╚═╝ ╚══▀▀═╝ 
 ```
 
-> A Java health calculator with both a console and GUI mode — built from scratch.
+> A Java health calculator with both a console and GUI mode, built from scratch.
 
 ---
 
@@ -27,20 +27,51 @@
 
 ---
 
+## project structure
+
+```
+BMIQ/
+├── BM IQ (Latest)/
+│   ├── console/        ← console version
+│   └── GUI/            ← Swing GUI version
+
+```
+
+---
+
 ## how to run it
 
 **requirements**
 - JDK 8 or higher
-- Apache NetBeans (recommended)
 
-**steps**
+### console version
+
 ```bash
 # clone the repo
 git clone https://github.com/v-nne/BMIQ.git
+
+# navigate to console folder
+cd BM IQ (Latest)/console
+
+# compile
+javac *.java
+
+# run
+java MainMenu
 ```
-1. Open **NetBeans**
-2. File → Open Project → select the BMIQ folder
-3. Hit **Run** (F6)
+
+### GUI version
+
+```bash
+# navigate to GUI folder
+cd /BM IQ (Latest)/GUI
+
+# compile
+javac *.java
+
+# run
+java MainMenuGUI
+```
 
 ---
 
@@ -53,7 +84,6 @@ git clone https://github.com/v-nne/BMIQ.git
 
 **GUI mode**
 - Dark mode Swing interface
-- Select GUI from the console main menu
 - Metric only
 
 ---
@@ -63,7 +93,7 @@ git clone https://github.com/v-nne/BMIQ.git
 | | metric | imperial |
 |---|---|---|
 | console | ✅ | ✅ |
-| GUI | ✅ | ➖ |
+| GUI | ✅ | Soon |
 
 ---
 
@@ -78,11 +108,10 @@ git clone https://github.com/v-nne/BMIQ.git
   1  BMI Calculator
   2  Ideal Weight
   3  Water Intake
-  4  View History
+  4  Graphical User Interface
   5  Exit
-  6  Switch to GUI
 ──────────────────────────
-  >
+  
 ```
 
 **GUI**
@@ -94,8 +123,8 @@ git clone https://github.com/v-nne/BMIQ.git
 ## built with
 
 - Java — no external libraries
-- Notepad++ for console logic (yes really)
-- NetBeans + Swing for the GUI
+- Notepad++ for most of the console logic (yes really)
+- Initially Intellij then NetBeans + Swing for the GUI
 - Devine formula for ideal weight
 - A lot of `System.out.println`
 
